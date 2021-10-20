@@ -96,4 +96,11 @@
       </plugins>
     </pluginManagement>
   </build>
+    <repositories>
+        <repository>
+            <id>vv</id>
+            <name>vv</name>
+            <url>https://artifacts.harble.net/repository/vv/</url>
+        </repository>
+    </repositories>
 </project>
