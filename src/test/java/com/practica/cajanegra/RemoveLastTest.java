@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Executable;
 
-public class RemoveLastTest {
+public class    RemoveLastTest {
     static SingleLinkedListImpl<String> list;
 
     @BeforeEach
