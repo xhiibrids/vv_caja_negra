@@ -10,7 +10,7 @@ public class AddFirstTest {
 
     @BeforeEach
     void init() {
-        list = new SingleLinkedListImpl<>("A", "B", "C", "D", "E", "F", "G");
+        list = new SingleLinkedListImpl<>("A","B","C");
     }
 
 
@@ -21,45 +21,43 @@ public class AddFirstTest {
         list.addFirst(element);
         Assertions.assertEquals(result,list.getAtPos(1));
     }
-
+    @DisplayName("Test vacio añadir válidos")
+    @ParameterizedTest
+    @MethodSource(value = "validData")
+    void addFirstEmptyValid(String element,String result) {
+        list = new SingleLinkedListImpl<>();
+        list.addFirst(element);
+        String actual = list.toString();
+        Assertions.assertEquals(result,actual);
+    }
     static String[][] validData() {
         return new String[][]{
-                {"A", "A"},
+                {"J", "J"},
                 {"B", "B"},
                 {"M", "M"},
                 {"Y", "Y"},
                 {"Z", "Z"}
         };
     }
-    @DisplayName("Test vacío añadir válidos")
-    @ParameterizedTest
-    @MethodSource(value = "validData")
-    void addFirstEmptyValid(String element,String result) {
-        list = new SingleLinkedListImpl<>();
-        list.addFirst(element);
-        Assertions.assertThrows(java.lang.IllegalArgumentException.class, () -> list.getAtPos(1));
 
-    }
-
-    @DisplayName("Test valores inválidos")
+    @DisplayName("Test añadir inválidos")
     @ParameterizedTest
     @MethodSource(value = "invalidData")
     void addFirstInvalid(String element, String result) {
         list.addFirst(element);
-        Assertions.assertEquals(result,list.getAtPos(1));
+        Assertions.assertNotEquals(result,list.getAtPos(1));
 
     }
 
-    @DisplayName("Test vacío valores inválidos")
+    @DisplayName("Test vacio añadir inválidos")
     @ParameterizedTest
     @MethodSource(value = "invalidData")
-    void addFirstEmptyInvalid(String element, String result) {
+    void addFirstEmptyInvalid(String element,String result) {
         list = new SingleLinkedListImpl<>();
         list.addFirst(element);
-
-        Assertions.assertThrows(java.lang.IllegalArgumentException.class, () -> list.getAtPos(1));
+        String actual = list.toString();
+        Assertions.assertNotEquals(result,actual);
     }
-
 
     static String[][] invalidData() {
         return new String[][]{
