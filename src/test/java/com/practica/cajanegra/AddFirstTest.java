@@ -32,7 +32,7 @@ public class AddFirstTest {
     }
     static String[][] validData() {
         return new String[][]{
-                {"J", "J"},
+                {"A", "A"},
                 {"B", "B"},
                 {"M", "M"},
                 {"Y", "Y"},
