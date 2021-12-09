@@ -40,6 +40,7 @@ public class IndexOfTest {
         Assertions.assertEquals(pos[3],list.indexOf(prueba[7]));
         Assertions.assertEquals(pos[4],list.indexOf(prueba[8]));
         Assertions.assertEquals(pos[4],list.indexOf(prueba[9]));
+
     }
 
     @Test
