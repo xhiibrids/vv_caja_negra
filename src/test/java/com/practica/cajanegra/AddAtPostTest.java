@@ -22,8 +22,11 @@ public class AddAtPostTest {
     @ParameterizedTest()
     @MethodSource("perValidGenerator")
     void addAtPos(int position, String elem,String result){
+            int size = list.size();
             list.addAtPos(elem,position);
             Assertions.assertEquals(result,list.getAtPos(position));
+            Assertions.assertEquals(size+1,list.size());
+
     }
     static Stream<Arguments> perValidGenerator(){
         return Stream.of(
