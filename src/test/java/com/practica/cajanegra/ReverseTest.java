@@ -19,14 +19,17 @@ public class ReverseTest {
 
     @Test
     void reverse() {
-        list.reverse();
         Assertions.assertEquals("[G, F, E, D, C, B, A]",list.reverse().toString());
+        Assertions.assertEquals("[A, B, C, D, E, F, G]",list.toString());
+
+
     }
     @Test
     void reverseempty() {
         list = new SingleLinkedListImpl<>();
-        list.reverse();
         Assertions.assertEquals("[]",list.reverse().toString());
+        Assertions.assertEquals("[]",list.toString());
+
     }
 
 
