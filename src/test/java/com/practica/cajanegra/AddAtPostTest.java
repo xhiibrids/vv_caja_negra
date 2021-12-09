@@ -80,7 +80,7 @@ public class AddAtPostTest {
                 arguments(0,"Z","Z"),
 
                 arguments(0,"@","@"),
-                arguments(0,"","")
+                arguments(0,"[","[")
         );
     }
 
@@ -97,17 +97,17 @@ public class AddAtPostTest {
     static Stream<Arguments> perOutGenerator(){
         return Stream.of(
                 arguments(1,"@","@"),
-                arguments(1,"",""),
+                arguments(1,"[","["),
                 arguments(2,"@","@"),
-                arguments(2,"",""),
+                arguments(2,"["," ["),
                 arguments(4,"@","@"),
-                arguments(4,"",""),
+                arguments(4,"[","["),
                 arguments(6,"@","@"),
-                arguments(6,"",""),
+                arguments(6,"[","["),
                 arguments(7,"@","@"),
-                arguments(7,"",""),
+                arguments(7,"[","["),
                 arguments(8,"@","@"),
-                arguments(8,"","")
+                arguments(8,"[","[")
                 );
     }
 

@@ -9,9 +9,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import static org.junit.jupiter.params.provider.Arguments.arguments;
-
 import java.util.stream.Stream;
+
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 public class IsSubListTest {
 
@@ -49,26 +49,6 @@ public class IsSubListTest {
 
     static SingleLinkedListImpl<String> list;
 
-
-    @BeforeEach
-    void init() {
-        list = new SingleLinkedListImpl<>("A", "B", "C", "D", "E", "F", "G", "H");
-    }
-
-    @DisplayName("Comprobar lista vacía y parámetro que no sea una lista ")
-    @Test
-    void isNotListAndEmptyList() {
-        Assertions.assertEquals(0, list.isSubList(null));
-    }
-
-
-    @DisplayName("Comprobar casos de prueba para valores límite de sublistas no vacías")
-    @ParameterizedTest
-    @MethodSource(value = "notEmptyList")
-    void notEmptyListWithCases(SingleLinkedListImpl<String> sublista, int result) {
-        Assertions.assertEquals(result, list.isSubList(sublista));
-    }
-
     static Stream<Arguments> notEmptyList() {
         return Stream.of(
                 /**Min*/
@@ -82,13 +62,37 @@ public class IsSubListTest {
                 /**Max*/
                 arguments(new SingleLinkedListImpl<>("F", "G", "H"), 6),
                 /**Antes de min*/
-                arguments(new SingleLinkedListImpl<>("D", "A", "B"), -1),
+                arguments(new SingleLinkedListImpl<>("W", "A", "B"), -1),
                 /**Después de max*/
-                arguments(new SingleLinkedListImpl<>("F", "G", "A"), -1),
+                arguments(new SingleLinkedListImpl<>("G", "H", "X"), -1),
                 /**Sublista fuera del dominio*/
                 arguments(new SingleLinkedListImpl<>("A", "C", "D", "E", "H"), -1)
 
         );
+    }
+
+    @BeforeEach
+    void init() {
+        list = new SingleLinkedListImpl<>("A", "B", "C", "D", "E", "F", "G", "H");
+    }
+
+    @DisplayName("Comprobar lista vacía")
+    @Test
+    void isEmptyList() {
+        Assertions.assertEquals(0, list.isSubList(new SingleLinkedListImpl<>()));
+    }
+
+    @DisplayName("Comprobar elemento que no sea una lista")
+    @Test
+    void isNotList() {
+        Assertions.assertEquals(0, list.isSubList(null));
+    }
+
+    @DisplayName("Comprobar casos de prueba para valores límite de sublistas no vacías")
+    @ParameterizedTest
+    @MethodSource(value = "notEmptyList")
+    void notEmptyListWithCases(SingleLinkedListImpl<String> sublista, int result) {
+        Assertions.assertEquals(result, list.isSubList(sublista));
     }
 
 }
