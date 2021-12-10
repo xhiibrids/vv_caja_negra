@@ -17,7 +17,7 @@ public class IndexOfTest {
 
     @Test
     @DisplayName("Test válidos sin duplicados")
-    void IndexOfValid(){
+    void indexOfValid(){
         String [] prueba={"A", "B", "M","Y","Z"};
         int [] result={1,2,3,4,5};
         for(int i=0; i<prueba.length;i++){
@@ -26,7 +26,7 @@ public class IndexOfTest {
     }
     @Test
     @DisplayName("Test válidos con duplicados")
-    void IndexOfValidDuplicate(){
+    void indexOfValidDuplicate(){
         list = new SingleLinkedListImpl<>("A","B","M","A","B","M","Y","Y","Z","Z");
         String [] prueba={"A","B","M","A","B","M","Y","Y","Z","Z"};
         int [] pos={1,2,3,7,9};
@@ -44,7 +44,7 @@ public class IndexOfTest {
 
     @Test
     @DisplayName("Test inválidos")
-    void IndexOfInvalid() {
+    void indexOfInvalid() {
         Assertions.assertThrows(java.util.NoSuchElementException.class, () -> list.indexOf("@"));
         Assertions.assertThrows(java.util.NoSuchElementException.class, () -> list.indexOf("["));
         Assertions.assertThrows(java.util.NoSuchElementException.class, () -> list.indexOf("H"));
