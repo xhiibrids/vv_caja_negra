@@ -45,10 +45,17 @@ public class IndexOfTest {
         };
     }
 
-    @Test
+    @ParameterizedTest
     @DisplayName("Test inválidos")
-    void indexOfInvalid() {
-        Assertions.assertThrows(java.util.NoSuchElementException.class, () -> list.indexOf("@"));
-        Assertions.assertThrows(java.util.NoSuchElementException.class, () -> list.indexOf("["));
+    @MethodSource(value = "invaliddata")
+    void indexOfInvalid(String element) {
+        Assertions.assertThrows(java.util.NoSuchElementException.class, () -> list.indexOf(element));
+        Assertions.assertThrows(java.util.NoSuchElementException.class, () -> list.indexOf(element));
+    }
+    static String [] invaliddata(){
+        return new String[]{
+                "@",
+                "["
+        };
     }
 }
