@@ -10,23 +10,41 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 import java.util.stream.Stream;
 
 public class ReverseTest {
-    static SingleLinkedListImpl<String> list;
 
-    @BeforeEach
-    void setup() {
-        list = new SingleLinkedListImpl<>("A", "B", "C", "D", "E", "F", "G");
-    }
+    private static SingleLinkedListImpl<String> list,listoneelement,listtwoelement;
+
 
     @Test
     void reverse() {
-        list.reverse();
+        list = new SingleLinkedListImpl<>("A", "B", "C", "D", "E", "F", "G");
         Assertions.assertEquals("[G, F, E, D, C, B, A]",list.reverse().toString());
+        Assertions.assertEquals("[A, B, C, D, E, F, G]",list.toString());
+
+
+
+
+    }
+    @Test
+    void reverseoneelement(){
+        listoneelement=  new SingleLinkedListImpl<>("A");
+        Assertions.assertEquals("[A]",listoneelement.reverse().toString());
+        Assertions.assertEquals("[A]",listoneelement.toString());
+    }
+
+    @Test
+    void resversetwoelements(){
+
+        listtwoelement =  new SingleLinkedListImpl<>("A","B");
+        Assertions.assertEquals("[B, A]",listtwoelement.reverse().toString());
+        Assertions.assertEquals("[A, B]",listtwoelement.toString());
+
     }
     @Test
     void reverseempty() {
         list = new SingleLinkedListImpl<>();
-        list.reverse();
         Assertions.assertEquals("[]",list.reverse().toString());
+        Assertions.assertEquals("[]",list.toString());
+
     }
 
 
