@@ -12,15 +12,7 @@ import java.util.Iterator;
 
 
 
-class AddNtimesTest {
-    /*
-    Clases de equivalencia
-    AddNTimes:
-    Valores de Element:
-    'A', 'B', 'M', 'Y', 'Z'
-    Valores de times:
-    -1, 1
-    */
+class AddNTimesTest {
     static AbstractSingleLinkedListImpl<String> list;
 
 
@@ -63,10 +55,7 @@ class AddNtimesTest {
     void invalidElementValidTimes(String element, String times) {
         int limit = Integer.parseInt(times);
         list.addNTimes(element, limit);
-        Iterator<String> it = list.iterator();
-        for (int i = 0; i < limit && it.hasNext(); i++) {
-            Assertions.assertEquals(element, it.next());
-        }
+        Assertions.assertTrue(list.isEmpty());
     }
 
     @DisplayName("AddNTimes | Elementos inválidos | Veces inválidas")

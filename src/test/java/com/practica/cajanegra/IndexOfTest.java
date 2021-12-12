@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 
 public class IndexOfTest {
@@ -17,37 +19,43 @@ public class IndexOfTest {
 
     @Test
     @DisplayName("Test válidos sin duplicados")
-    void IndexOfValid(){
+    void indexOfValid(){
         String [] prueba={"A", "B", "M","Y","Z"};
         int [] result={1,2,3,4,5};
         for(int i=0; i<prueba.length;i++){
             Assertions.assertEquals(result[i],list.indexOf(prueba[i]));
         }
     }
-    @Test
-    @DisplayName("Test válidos con duplicados")
-    void IndexOfValidDuplicate(){
-        list = new SingleLinkedListImpl<>("A","B","M","A","B","M","Y","Y","Z","Z");
-        String [] prueba={"A","B","M","A","B","M","Y","Y","Z","Z"};
-        int [] pos={1,2,3,7,9};
-        Assertions.assertEquals(pos[0],list.indexOf(prueba[0]));
-        Assertions.assertEquals(pos[1],list.indexOf(prueba[1]));
-        Assertions.assertEquals(pos[2],list.indexOf(prueba[2]));
-        Assertions.assertEquals(pos[0],list.indexOf(prueba[3]));
-        Assertions.assertEquals(pos[1],list.indexOf(prueba[4]));
-        Assertions.assertEquals(pos[2],list.indexOf(prueba[5]));
-        Assertions.assertEquals(pos[3],list.indexOf(prueba[6]));
-        Assertions.assertEquals(pos[3],list.indexOf(prueba[7]));
-        Assertions.assertEquals(pos[4],list.indexOf(prueba[8]));
-        Assertions.assertEquals(pos[4],list.indexOf(prueba[9]));
 
+    @ParameterizedTest
+    @DisplayName("Test válidos con duplicados")
+    @MethodSource(value = "validdata")
+    void indexOfValidDuplicate(String pos,String element){
+        list = new SingleLinkedListImpl<>("A","B","M","A","B","M","Y","Y","Z","Z");
+        int result = Integer.parseInt(pos);
+        Assertions.assertEquals(result,list.indexOf(element));
+    }
+    static String [][] validdata(){
+        return new String[][]{
+                {"1","A"},
+                {"2","B"},
+                {"3","M"},
+                {"7","Y"},
+                {"9","Z"}
+        };
     }
 
-    @Test
+    @ParameterizedTest
     @DisplayName("Test inválidos")
-    void IndexOfInvalid() {
-        Assertions.assertThrows(java.util.NoSuchElementException.class, () -> list.indexOf("@"));
-        Assertions.assertThrows(java.util.NoSuchElementException.class, () -> list.indexOf("["));
-        Assertions.assertThrows(java.util.NoSuchElementException.class, () -> list.indexOf("H"));
+    @MethodSource(value = "invaliddata")
+    void indexOfInvalid(String element) {
+        Assertions.assertThrows(java.util.NoSuchElementException.class, () -> list.indexOf(element));
+        Assertions.assertThrows(java.util.NoSuchElementException.class, () -> list.indexOf(element));
+    }
+    static String [] invaliddata(){
+        return new String[]{
+                "@",
+                "["
+        };
     }
 }
